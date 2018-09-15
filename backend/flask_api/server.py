@@ -77,7 +77,7 @@ def api_call():
         """
         responses = jsonify(predictions=final_predictions.to_json(orient="records"))
         responses.status_code = 200
-
+        print(responses, 'res')
         return (responses)
     
 @app.errorhandler(400)
