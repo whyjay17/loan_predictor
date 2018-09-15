@@ -65,8 +65,7 @@ class PreProcessing(BaseEstimator, TransformerMixin):
     
 def buildTrainModel():
     
-    data = pd.read_csv(r'C:\Users\YJ\Desktop\loan_detector_proj\flask_api\data\train.csv',\
-                error_bad_lines=False)
+    data = pd.read_csv('../flask_api/data/train.csv')
 
     data = data.dropna(subset=['Gender', 'Married', 'Credit_History', 'LoanAmount'])
 
