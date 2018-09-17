@@ -1,5 +1,10 @@
+
 .App {
   text-align: center;
+}
+
+.bg {
+  background-image: linear-gradient(to right, #859398 , #283048);
 }
 
 .App-logo {

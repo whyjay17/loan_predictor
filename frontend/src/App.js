@@ -11,7 +11,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">
-            Home Loan Eligibility Processor
+            Home Loan Eligibility Detector
           </h1>
         </header>
         <p className="App-intro">
