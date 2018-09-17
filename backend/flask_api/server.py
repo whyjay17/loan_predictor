@@ -9,7 +9,7 @@ import os
 import pandas as pd
 from sklearn.externals import joblib
 from flask import Flask, jsonify, request
-
+import json
 import dill as pickle
 
 app = Flask(__name__)
@@ -25,19 +25,7 @@ def api_call():
     Pandas dataframe (sent as a payload) from API Call
     """
     try:
-        #test_json = request.get_json()
-        test_json='[{"Loan_ID":"xxxx",\
-                    "Gender":"Female",\
-                    "Married":"No",\
-                    "Dependents":"0",\
-                    "Education":"Not Graduate",\
-                    "Self_Employed":"No",\
-                    "ApplicantIncome":100,\
-                    "CoapplicantIncome":0,\
-                    "LoanAmount":11000.0,\
-                    "Loan_Amount_Term":0.0,\
-                    "Credit_History":1.0,\
-                    "Property_Area":"Rural"}]'
+        test_json = request.data
         test = pd.read_json(test_json, orient='records')
         print(test)
         #To resolve the issue of TypeError: Cannot compare types 'ndarray(dtype=int64)' and 'str'
@@ -57,7 +45,7 @@ def api_call():
         #Load the saved model
         print("Loading the model...")
         loaded_model = None
-        with open(clf,'rb') as f:
+        with open(clf, 'rb') as f:
             loaded_model = pickle.load(f)
 
         print("The model has been loaded...doing predictions now...")
@@ -77,7 +65,6 @@ def api_call():
         """
         responses = jsonify(predictions=final_predictions.to_json(orient="records"))
         responses.status_code = 200
-        print(responses, 'res')
         return (responses)
     
 @app.errorhandler(400)
