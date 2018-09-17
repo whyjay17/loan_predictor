@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './house-logo.svg';
 import './App.css';
+import axios from 'axios';
+import Processor from './Processor';
 
 class App extends Component {
   render() {
@@ -14,6 +16,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
         </p>
+        <Processor/>
       </div>
     );
   }

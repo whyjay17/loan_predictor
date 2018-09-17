@@ -11,6 +11,7 @@ from sklearn.externals import joblib
 from flask import Flask, jsonify, request
 import json
 import dill as pickle
+from flask_cors import CORS
 
 app = Flask(__name__)
 
@@ -77,6 +78,9 @@ def bad_req(error=None):
 	resp.status_code = 400
 
 	return resp
+
+# Cross Origin Resource Sharing (CORS) support for the flask backend
+CORS(app=app, supports_credentials=True)
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 5000)
