@@ -9,27 +9,49 @@ import 'material-components-web/dist/material-components-web.min.css';
 export default class Processor extends React.Component {
   state = {
     name: '',
+    gender: 'male',
     income: '',
     married: 'yes',
     graduated: 'no',
+    co_income: '',
+    loan_amount: '',
+    loan_term: '',
+    credit_score: '',
+    property_area: '',
   }
-
+	getGender = event => {
+		this.setState({ gender: event.target.value })
+  }
 	getIncome = event => {
-		this.setState({income: event.target.value})
+		this.setState({ income: event.target.value })
   }
-  
-  handleChange = event => {
-    this.setState({ name: event.target.value });
+  getCoIncome = event => {
+    this.setState({ co_income: event.target.value });
+  }
+  getLoanAmount = event => {
+    this.setState({ loan_amount: event.target.value });
+  }
+  getLoanTerm = event => {
+    this.setState({ loan_term: event.target.value });
+  }
+  getMarried = event => {
+    this.setState({ married: event.target.value });
+  }
+  getEducation = event => {
+    this.setState({ graduated: event.target.value });
+  }
+  getCreditScore = event => {
+    this.setState({ credit_score: event.target.value });
+  }
+  getPropertyArea = event => {
+    this.setState({ property_area: event.target.value });
   }
 
-  handleSubmit = event => {
+  handleClick = event => {
     event.preventDefault();
-
-    const user = {
-      name: this.state.name
-    };
-
-    console.log('ss', user.name)
+    console.log(
+      `${this.state.gender}, ${this.state.married}, ${this.state.income}`
+    )
     axios.post('http://localhost:5000/predict', `[{
       "Loan_ID":"555",
         "Gender":"Male",
@@ -59,7 +81,7 @@ export default class Processor extends React.Component {
 
   render() {
     return (
-      <div className>
+      <div>
       {/*
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -70,10 +92,12 @@ export default class Processor extends React.Component {
 
         </form>
       */}
+        <button onClick={this.handleClick}>Submit</button>
         <Select
           label="Gender"
           placeholder=""
           options={['Male', 'Female']}
+          onChange={this.getGender}
         />
         <br/>
         <TextField
